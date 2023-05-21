@@ -1,6 +1,9 @@
 package factions
 
-import "context"
+import (
+	"context"
+	"spacetradersgo/v2/utils"
+)
 
 type FactionsClient interface {
 	// View the details of a faction by symbol.
@@ -24,12 +27,6 @@ type Faction struct {
 	IsRecruiting bool     `json:"isRecruiting"`
 }
 
-type Meta struct {
-	Total int `json:"total"`
-	Page  int `json:"page"`
-	Limit int `json:"limit"`
-}
-
 type GetFactionRequest struct {
 	Token         string
 	FactionSymbol string
@@ -48,6 +45,6 @@ type ListFactionsRequest struct {
 	Page int
 }
 type ListFactionsResponse struct {
-	Factions []Faction `json:"data"`
-	Meta     Meta      `json:"meta"`
+	Factions []Faction  `json:"data"`
+	Meta     utils.Meta `json:"meta"`
 }
