@@ -13,6 +13,8 @@ type ContractsClient interface {
 	ListContracts(ctx context.Context, req *ListContractsRequest) (*ListContractsResponse, error)
 	// View a specific contract.
 	GetContract(ctx context.Context, req *GetContractRequest) (*GetContractResponse, error)
+	// Accept a contract.
+	AcceptContract(ctx context.Context, req *AcceptContractRequest) (*AcceptContractResponse, error)
 }
 
 type Contract struct {

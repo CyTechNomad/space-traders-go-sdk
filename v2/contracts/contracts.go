@@ -97,3 +97,27 @@ func (c *contractsClient) GetContract(ctx context.Context, req *GetContractReque
 
 	return resp, nil
 }
+
+// Accept a contract.
+func (c *contractsClient) AcceptContract(ctx context.Context, req *AcceptContractRequest) (*AcceptContractResponse, error) {
+	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, fmt.Sprintf("https://api.spacetraders.io/v2/my/contracts/%s/accept", req.ContractID), nil)
+	if err != nil {
+		return nil, err
+	}
+	httpReq.Header.Set("Accept", "application/json")
+	httpReq.Header.Set("Authorization", fmt.Sprintf("Bearer %s", req.Token))
+
+	httpResp, err := c.httpClient.Do(httpReq)
+	if err != nil {
+		return nil, err
+	}
+	defer httpResp.Body.Close()
+
+	resp := &AcceptContractResponse{}
+	err = json.NewDecoder(httpResp.Body).Decode(resp)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
