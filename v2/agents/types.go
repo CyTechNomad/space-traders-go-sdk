@@ -2,6 +2,7 @@ package agents
 
 import (
 	"context"
+	"spacetradersgo/v2/factions"
 )
 
 type AgentsClient interface {
@@ -36,11 +37,11 @@ type NewAgentRequest struct {
 
 type NewAgentResponse struct {
 	Data struct {
-		Agent    Agent    `json:"agent"`
-		Contract struct{} `json:"contract"`
-		Faction  struct{} `json:"faction"`
-		Ship     struct{} `json:"ship"`
-		Token    string   `json:"token"`
+		Agent    Agent            `json:"agent"`
+		Contract struct{}         `json:"contract"`
+		Faction  factions.Faction `json:"faction"`
+		Ship     struct{}         `json:"ship"`
+		Token    string           `json:"token"`
 	} `json:"data"`
 }
 
