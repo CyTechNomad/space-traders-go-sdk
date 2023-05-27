@@ -12,19 +12,13 @@ type FactionsClient interface {
 	ListFactions(ctx context.Context, req *ListFactionsRequest) (*ListFactionsResponse, error)
 }
 
-type Traits struct {
-	Symbol      string `json:"symbol"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-}
-
 type Faction struct {
-	Symbol       string   `json:"symbol"`
-	Name         string   `json:"name"`
-	Description  string   `json:"description"`
-	Headquarters string   `json:"headquarters"`
-	Traits       []Traits `json:"traits"`
-	IsRecruiting bool     `json:"isRecruiting"`
+	Symbol       string         `json:"symbol"`
+	Name         string         `json:"name"`
+	Description  string         `json:"description"`
+	Headquarters string         `json:"headquarters"`
+	Traits       []utils.Traits `json:"traits"`
+	IsRecruiting bool           `json:"isRecruiting"`
 }
 
 type GetFactionRequest struct {

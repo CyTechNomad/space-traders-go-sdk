@@ -5,6 +5,7 @@ import (
 	"spacetradersgo/v2/contracts"
 	"spacetradersgo/v2/factions"
 	"spacetradersgo/v2/fleets"
+	"spacetradersgo/v2/systems"
 )
 
 type SpcaeTradersClient struct {
@@ -12,6 +13,7 @@ type SpcaeTradersClient struct {
 	Factions  factions.FactionsClient
 	Contracts contracts.ContractsClient
 	Fleets    fleets.FleetsClient
+	Systems   systems.SystemsClient
 }
 
 type spaceTraderClientOpts func(*SpcaeTradersClient)
@@ -22,6 +24,7 @@ var (
 		WithFactionsClient(factions.NewFactions()),
 		WithContractsClient(contracts.NewContracts()),
 		WithFleetClient(fleets.NewFleets()),
+		WithSystemsClient(systems.NewSystems()),
 	}
 )
 
@@ -46,6 +49,12 @@ func WithContractsClient(contractsClient contracts.ContractsClient) spaceTraderC
 func WithFleetClient(fleetClient fleets.FleetsClient) spaceTraderClientOpts {
 	return func(c *SpcaeTradersClient) {
 		c.Fleets = fleetClient
+	}
+}
+
+func WithSystemsClient(systemsClient systems.SystemsClient) spaceTraderClientOpts {
+	return func(c *SpcaeTradersClient) {
+		c.Systems = systemsClient
 	}
 }
 
